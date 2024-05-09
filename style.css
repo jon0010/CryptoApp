@@ -32,7 +32,7 @@
   /**
   *tipografía ejemplo
   */
-  --ff-dm-sans: "DM Sans", sans-serif;
+  --ff-inter: "Inter", sans-serif;
 
   --fs-1: 3.2rem;
   --fs-2: 3rem;
@@ -70,4 +70,157 @@
   --transition-2: 0.5s ease;
   --transition-3: 1s ease;
   --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--raisin-black);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.background-container {
+  background-color: #000000;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    transparent 5%,
+    transparent 10%,
+    transparent 15%,
+    transparent 20%
+  );
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.background-container::after {
+  content: "";
+  background-image: url(https://cryptologos.cc/logos/ethereum-eth-logo.png),
+    url(https://cryptologos.cc/logos/litecoin-ltc-logo.png),
+    url(https://cryptologos.cc/logos/binance-coin-bnb-logo.png),
+    url(https://cryptologos.cc/logos/cardano-ada-logo.png),
+    url(https://cryptologos.cc/logos/stellar-xlm-logo.png),
+    url(https://cryptologos.cc/logos/solana-sol-logo.png),
+    url(https://cryptologos.cc/logos/dogecoin-doge-logo.png),
+    url(https://cryptologos.cc/logos/polkadot-new-dot-logo.png),
+    url(https://cryptologos.cc/logos/chainlink-link-logo.png),
+    url(https://cryptologos.cc/logos/uniswap-uni-logo.png),
+    url(https://cryptologos.cc/logos/avalanche-avax-logo.png),
+    url(https://cryptologos.cc/logos/cosmos-atom-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  animation: rotateBackground 40s linear infinite;
+}
+
+@keyframes rotateBackground {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.navbar {
+  background-color: transparent;
+  color: var(--white);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.logo img {
+  width: 120px;
+  margin-top: 10px;
+  border-radius: 15px;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.nav-menu li {
+  margin-right: 20px;
+}
+
+.nav-menu li:last-child {
+  margin-right: 0;
+}
+
+.nav-menu li a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: var(--fs-6);
+}
+
+.auth-buttons a {
+  background-color: var(--maximum-yellow-red);
+  color: var(--white);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: var(--fs-6);
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: var(--radius-12);
+}
+
+.landing-page {
+  padding-top: calc(80px + 20px);
+  text-align: center;
+  padding: 100px;
+  position: relative;
+  z-index: 1;
+}
+
+footer {
+  background-color: var(--eerie-black-1);
+  color: var(--white);
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.title {
+  color: white;
+  font-size: 3.5em;
+  font-weight: 900;
+}
+
+.subtitle {
+  color: rgb(130, 130, 130);
+  font-size: 1em;
+  font-weight: normal;
 }
