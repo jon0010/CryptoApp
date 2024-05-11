@@ -224,3 +224,78 @@ footer {
   font-size: 1em;
   font-weight: normal;
 }
+
+/* Esto lo hice pensando en la página de About Us
+      Habría que chequear si se pueden fusionar las clases */
+/* HORRIBLE EL FONDO HAY QUE CAMBIARLO*/
+.containerAU{ /*por qué no anda???? Respuesta: Anda OK*/
+  padding-top: calc(80px + 20px);
+  text-align: center;
+  padding: 100px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.grid-AU{
+  background: none;
+  border: 1px solid lightgrey;
+  position: relative;
+  box-shadow: 3px 3px 3px 5px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Define 2 columnas de igual tamaño */
+  gap: 20px; /* Espacio entre las columnas */
+}
+.flex-AU{
+  background:lightgrey;
+  border: 1px solid lightgrey;
+  position: relative;
+  box-shadow: 3px 3px 3px 5px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+  display: flex; /* Activa Flexbox para los elementos */
+  align-items: center; /* Alinea verticalmente los elementos en el centro */
+  justify-content:space-around; /* Distribuye el espacio entre los elementos */
+  flex-direction: column;
+}
+.flex-AU .title{
+  color: rgb(73, 70, 70);
+  font-size: 2em;
+  font-weight: 600;
+
+}
+.flex-AU .text{
+  color: rgb(107, 98, 98);
+  font-size: 0.9em;
+  font-weight: 600;
+  text-align: justify;
+  padding: 1em;
+}
+.grid-integrantes{
+  background: none;
+  border: 1px solid lightgrey;
+  position: relative;
+  box-shadow: 3px 3px 3px 5px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+  display: grid;
+  /*grid-template-rows: repeat(4, 1fr); /* Define 2 columnas de igual tamaño */
+  grid-template-columns: repeat(4,1fr) ;
+  gap: 5px; /* Espacio entre las columnas */
+}
+
+.grid-integrantes .flex-AU .text{
+  color: rgb(107, 98, 98);
+  font-size: 0.8em;
+  font-weight: 600;
+  text-align: justify;
+  padding: 1em;
+}
+.flex-AU ul{
+  padding: 1px;
+  margin: 5px;
+  display:flex;
+  flex-direction: column;
+}
+.flex-AU li{
+  list-style:square; /* Elimina las viñetas predeterminadas */
+  padding:1px; /* Elimina el padding predeterminado de los elementos de la lista */
+}
+/*-----------------------------------------*/
