@@ -42,6 +42,7 @@
   --fs-6: 1.5rem;
   --fs-7: 1.4rem;
   --fs-8: 1.2rem;
+  --fs-10: 1rem;
   --fw-500: 500;
   --fw-700: 700;
 
@@ -168,7 +169,7 @@ body {
 }
 
 .nav-menu li {
-  margin-right: 20px;
+  margin-right: 5%; /*Juan: mejor que quede en %*/
 }
 
 .nav-menu li:last-child {
@@ -298,4 +299,511 @@ footer {
   list-style:square; /* Elimina las viñetas predeterminadas */
   padding:1px; /* Elimina el padding predeterminado de los elementos de la lista */
 }
+
+
 /*-----------------------------------------*/
+
+/* RESPONSIVE About Us / General */
+
+/*NOTA: No me gusta los estilos pero bueno puse colores para ir viendo como cambia*/
+
+/*CELU*/
+@media only screen and (max-width: 600px) {
+  .container{
+    padding-left: 2%;
+    padding-right: 0%;
+    margin-right:1.1em ;
+    margin-left: 0;
+    background-color: #000000;
+  }
+  .background-container{
+    overflow-y: auto;
+    overflow-x: auto;
+    overflow-wrap: normal;
+  }
+  .nav-menu{
+    font-size: 0.5em;
+    
+  }
+  .auth-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .auth-buttons a {
+    background-color: var(--maximum-yellow-red);
+    color: var(--white);
+    padding: 2% 3%;
+    padding-right: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: var(--fs-10);
+    margin: 1% 2%;
+    margin-right: 0;
+    cursor: pointer;
+    border-radius: var(--radius-12);
+  }
+  .auth-buttons a:last-child{
+    font-size: 80%;
+  }
+  .logo img{
+    width: 80%;
+    margin-top:auto;
+    border-radius: 10%;
+  }
+
+  .nav-menu li {
+    margin-right: 2%; /*Juan: mejor que quede en %*/
+    font-size: 0.8em;
+  }
+  
+  .nav-menu li:last-child {
+    margin-right: 1%;
+    font-size: var(--fs-8);
+  }
+  
+  .nav-menu li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: var(--fs-8);
+  }
+  
+  
+  
+  .containerAU{
+    text-wrap: stable;
+    padding-right: 0%;
+    padding-left: 0%;
+  }
+  .title {
+    color: white;
+    font-size: 1em;
+    font-weight: 900;
+    text-wrap: wrap;
+    justify-content: center;
+
+  }
+  .subtitle {
+    color: rgb(130, 130, 130);
+    font-size: 0.8em;
+    font-weight: normal;
+    text-wrap:pretty;
+    word-wrap: break-word;
+    text-align:center;
+  }
+  .grid-AU{
+    background: none;
+    border: 2px solid rgb(255, 0, 0);
+    position: relative;
+    box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Define 2 columnas de igual tamaño */
+    gap: 0.5%; /* Espacio entre las columnas */
+    padding: 0%;
+    margin: 0%;
+  }
+  .flex-AU{
+    background:lightgrey;
+    border: 1px solid rgb(255, 0, 0);
+    position: relative;
+    box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+    display: flex; /* Activa Flexbox para los elementos */
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+    justify-content:space-between; /* Distribuye el espacio entre los elementos */
+    flex-direction: column;
+    margin-top:auto;
+  }
+  .flex-AU .title{
+    color: rgb(73, 70, 70);
+    font-size: var(--fs-10);
+    font-weight: 600;
+    padding: 0;
+    margin-right: 15%;
+    text-align: center;
+  
+  }
+  .flex-AU .text{
+    color: rgb(107, 98, 98);
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-align: center;
+    padding-right: 15%;
+    padding-left: 15%;
+    margin-right: 10%;
+  }
+  .flex-AU img{
+    width: 10em;
+    height: 10em;
+    margin-top: 0;
+    padding:0;
+  }
+  .grid-integrantes{
+    background: none;
+    border: 1px solid rgb(6, 1, 250);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap:0;
+    justify-content: space-evenly;
+    justify-content: center;
+    align-content: space-evenly;
+    align-items: center;
+  }
+  
+  .grid-integrantes .flex-AU .text{
+    color: rgb(107, 98, 98);
+    font-size: 0.8em;
+    font-weight: 600;
+    text-align: justify;
+    padding: 1em;
+  }
+  .flex-AU ul{
+    padding: 1px;
+    margin: 5px;
+    display:flex;
+    flex-direction: column;
+  }
+  .flex-AU li{
+    list-style:square; /* Elimina las viñetas predeterminadas */
+    padding:1px; /* Elimina el padding predeterminado de los elementos de la lista */
+  }
+}
+
+/*TABLET?*/
+@media only screen and (min-width: 601px) and (max-width: 1000px) {
+  .container{
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    margin-right:1.1em ;
+    margin-left: 0;
+    background-color: #000000;
+  }
+  .background-container{
+    overflow-y: auto;
+    overflow-x: auto;
+    overflow-wrap: normal;
+  }
+  .nav-menu{
+    justify-content: space-around;
+    align-content: center;
+        
+  }
+  .auth-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content:space-around;
+    justify-items: auto;
+    align-items: auto ;
+  }
+  .auth-buttons a {
+    background-color: var(--maximum-yellow-red);
+    color: var(--white);
+    padding: 5% 5%;
+    padding-right: 5%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2vw;
+    margin: 3% 3%;
+    margin-right: 0;
+    cursor: pointer;
+    border-radius: var(--radius-12);
+  }
+  .auth-buttons a:last-child{
+    font-size: 2vw;
+  }
+  .logo img{
+    width: 80%;
+    margin-top:1%;
+    border-radius: 10%;
+  }
+
+  .nav-menu li {
+    margin-right: 1vw; /*Juan: mejor que quede en %*/
+    font-size: 5vw;
+  }
+  
+  .nav-menu li:last-child {
+    margin-right: 1%;
+    font-size: 5vw;
+  }
+  
+  .nav-menu li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 3vw;
+  }
+  
+  
+  
+  .containerAU{
+    text-wrap: stable;
+    padding-right: 0%;
+    padding-left: 0%;
+  }
+
+  .title {
+    color: white;
+    font-size: 8vw;
+    font-weight: 900;
+    text-wrap: wrap;
+    justify-content: center;
+
+  }
+  .subtitle {
+    color: rgb(130, 130, 130);
+    font-size: 5vw;
+    font-weight: normal;
+    text-wrap:pretty;
+    word-wrap: break-word;
+    text-align:center;
+  }
+  .grid-AU{
+    background: none;
+    border: 5px solid rgb(0, 17, 255);
+    position: relative;
+    box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Define 2 columnas de igual tamaño */
+    gap: 1vw; /* Espacio entre las columnas */
+    padding: 0%;
+    margin: 0%;
+  }
+  .flex-AU{
+    background:lightgrey;
+    border: 1vw solid rgb(255, 0, 0);
+    position: relative;
+    box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+    display: flex; /* Activa Flexbox para los elementos */
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+    align-content: space-around;
+    justify-content:space-between; /* Distribuye el espacio entre los elementos */
+    justify-items: center;
+    flex-direction: column;
+    margin-top:auto;
+  }
+  .flex-AU .title{
+    color: rgb(73, 70, 70);
+    font-size: 5vw;
+    font-weight: 600;
+    padding: 0;
+    margin-right: 15%;
+    text-align: center;
+    margin-left: 10%
+  
+  }
+  .flex-AU .text{
+    color: rgb(107, 98, 98);
+    font-size: 3vw;
+    font-weight: 600;
+    text-align: center;
+    padding-right: 15%;
+    padding-left: 0%;
+    margin-left: 10%;
+  }
+  .flex-AU img{
+    width: 50%;
+    height: auto;
+    margin-top: 0;
+    padding:0;
+    justify-items: center;
+  }
+  .grid-integrantes{
+    background: none;
+    border: 1vw solid rgb(6, 1, 250);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap:0;
+    justify-content: space-evenly;
+    justify-content: center;
+    align-content: space-evenly;
+    align-items: center;
+  }
+  
+  .grid-integrantes .flex-AU .text{
+    color: rgb(107, 98, 98);
+    font-size: 3vw;
+    font-weight: 600;
+    text-align: justify;
+    padding: 1em;
+  }
+  
+  .flex-AU ul{
+    padding: 1px;
+    margin: 5px;
+    display:flex;
+    flex-direction: column;
+  }
+  .flex-AU li{
+    list-style:square; /* Elimina las viñetas predeterminadas */
+    padding:1px; /* Elimina el padding predeterminado de los elementos de la lista */
+  }
+}
+
+
+
+/*PC*/
+@media only screen and (min-width: 1001px) {
+  .container{
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    margin-right: 1.1em ;
+    margin-left: 0;
+    background-color: #020202;
+  }
+  .background-container{
+    overflow-y: auto;
+    overflow-x: auto;
+    overflow-wrap: normal;
+  }
+  .nav-menu{
+    justify-content: space-evenly;
+    align-content: center;
+    position: relative;
+  }
+  .auth-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content:space-evenly;
+    justify-items: auto;
+    align-items: auto ;
+  }
+  .auth-buttons a {
+    background-color: var(--maximum-yellow-red);
+    color: var(--white);
+    padding: 5% 5%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1vw;
+    margin-right: 3.2vw;
+    cursor: pointer;
+    border-radius: var(--radius-24);
+    text-wrap: nowrap;
+  }
+  .logo img{
+    width: 100%;
+    margin-top:1%;
+    border-radius: 10%;
+  }
+
+  .nav-menu li {
+    margin-right: 0; /*Juan: mejor que quede en %*/
+    font-size: 1vw;
+  }
+  
+  .nav-menu li:last-child {
+    margin-right: 0;
+    font-size: 1vw;
+  }
+  
+  .nav-menu li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 2vw;
+  }
+  
+  
+  
+  .containerAU{
+    text-wrap: stable;
+    padding-right: 0%;
+    padding-left: 0%;
+    position: relative;
+  }
+
+  .title {
+    color: white;
+    font-size: 5vw;
+    font-weight: 900;
+    text-wrap: wrap;
+    justify-content: center;
+
+  }
+  .subtitle {
+    color: rgb(130, 130, 130);
+    font-size: 4vw;
+    font-weight: normal;
+    text-wrap:pretty;
+    word-wrap: break-word;
+    text-align:center;
+  }
+  .containerAU{ /*por qué no anda???? Respuesta: Anda OK*/
+    padding-top: calc(80px + 20px);
+    text-align: center;
+    padding: 100px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .grid-AU{
+    background: none;
+    border: 1px solid lightgrey;
+    position: relative;
+    box-shadow: 3px 3px 3px 5px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Define 2 columnas de igual tamaño */
+    gap: 20px; /* Espacio entre las columnas */
+  }
+  .flex-AU{
+    background:lightgrey;
+    border: 1px solid lightgrey;
+    position: relative;
+    box-shadow: 3px 3px 3px 5px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+    display: flex; /* Activa Flexbox para los elementos */
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+    justify-content:space-evenly; /* Distribuye el espacio entre los elementos */
+    flex-direction: column;
+  }
+  .flex-AU .title{
+    color: rgb(73, 70, 70);
+    font-size: 3vw;
+    font-weight: 600;  
+  }
+  .flex-AU .text{
+    color: rgb(107, 98, 98);
+    font-size: 2vw;
+    font-weight: 600;
+    text-align: justify;
+  }
+  .grid-integrantes{
+    background: none;
+    border: 1px solid lightgrey;
+    position: relative;
+    box-shadow: 3px 3px 3px 5px rgba(112, 112, 112, 0.5); /* Sombra gris con 50% de opacidad */
+    display: grid;
+    /*grid-template-rows: repeat(4, 1fr); /* Define 2 columnas de igual tamaño */
+    grid-template-columns: repeat(4,1fr) ;
+    gap: 5px; /* Espacio entre las columnas */
+  }
+  
+  .grid-integrantes .flex-AU .text{
+    color: rgb(107, 98, 98);
+    font-size: 1vw;
+    font-weight: 600;
+    text-align: justify;
+    padding: 1em;
+  }
+  .flex-AU ul{
+    padding: 1px;
+    margin: 5px;
+    display:flex;
+    flex-direction: column;
+  }
+  .flex-AU li{
+    list-style:square; /* Elimina las viñetas predeterminadas */
+    padding:1px; /* Elimina el padding predeterminado de los elementos de la lista */
+  }
+  .flex-AU img{
+    width: 80%;
+    height: auto;
+    margin-top: 0;
+    padding:0;
+    justify-items: center;
+  }
+}
