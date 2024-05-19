@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-     
-    <script src="FormularioRegistro.js"></script>
+    
+    <script src="recuperoContra.js" defer></script>
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -42,26 +42,25 @@
         <div class="landing-page">
             <h1 class="title">Bienvenido a CryptoApp</h1>
             <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, laborum?</p>
-            
-            <section class="form-register" >
-                <h4>Formulario de registro</h4>
+            <section class="form-register">
+                <h4>Ingrese su correo electronico y presione Enviar</h4>
                 
-                <form id="formularioRegistro">
-                    <input class="controls" type="text" name="nombre" id="nombre" required placeholder="Ingrese su nombre">
-                    <input class="controls" type="text" name="apellido" id="apellido" required placeholder="Ingrese su apellido">
-                    <input class="controls" type="email" name="correo" id="correo" required placeholder="Ingrese su Correo Electronico">
-                    <input class="controls" type="password" name="contraseña" id="contraseña" required placeholder="Ingrese su contraseñas">
-                    <input class="controls" type="password" name="confirmarContraseña" id="confirmarContraseña" required placeholder="Confirmar su contraseñas">
-                    <p>Estoy de acuerdo con <a href="#">terminos y condiciones</a></p>
-                    <input class="Botons" type="submit" id="submit" disabled value="Registrar">
+                <form id="recuperoContraseña">
+                    <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su usuario o Correo Electronico">
+                    <input class="Botons" type="submit" id="submit" disabled value="Enviar">
                 </form>
 
-                <p><a href="./login.html">Ya tengo cuenta</a></p>
+                <p><a href="./register.html">No tengo cuenta.</a></p>
             </section>
-
         </div>
     </div>
-    
+
+    <form action="Link" method="POST" target="_blank">
+        <label for="firtname">Nombre: </label>
+        <input size="30" type="text" name="firtname" id="firtname">
+        <input type="submit" value="Enviar datos">
+    </form>
+
     <footer>
         <p>&copy; 2024 CryptoApp. Todos los derechos reservados.</p>
     </footer>
