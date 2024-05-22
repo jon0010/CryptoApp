@@ -61,7 +61,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  height: 80vh;
 }
 
 .landing-page {
@@ -80,47 +80,64 @@ header {
   margin-top: 10px;
 }
 
-.prices,
-.text-images,
-.doubts-contact {
-  text-align: center;
-  padding: 20px;
+.form-register {
+  background-color: #2a2d32;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  text-align: left;
 }
 
-.prices h2,
-.text-images h2,
-.doubts-contact h2 {
+.form-register h4 {
   margin-bottom: 20px;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+.controls {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #3a3d42;
+  border-radius: 4px;
+  background-color: #1c1f22;
+  color: #e8e8e8;
 }
 
-.column {
-  flex: 1;
+.controls::placeholder {
+  color: #e8e8e8;
 }
 
-.column p {
-  margin-bottom: 20px;
-}
-
-.column img {
-  max-width: 100%;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
+.Botons {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
   border: none;
-  padding: 10px 20px;
+  border-radius: 4px;
+  color: #fff;
   cursor: pointer;
+  font-weight: bold;
 }
 
-button:hover {
-  background-color: #0056b3;
+.Botons:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.Botons:hover:enabled {
+  background-color: #45a049;
+}
+
+.form-register p {
+  margin-top: 10px;
+}
+
+.form-register p a {
+  color: #e8e8e8;
+  text-decoration: none;
+}
+
+.form-register p a:hover {
+  text-decoration: underline;
 }
 
 footer {
@@ -131,33 +148,4 @@ footer {
   position: absolute;
   width: 100%;
   bottom: 0;
-}
-
-.prices table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.prices th,
-.prices td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.prices th {
-  background-color: #007bff;
-  color: white;
-}
-
-.prices tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.prices tbody tr:hover {
-  background-color: #ddd;
-}
-
-.prices img {
-  max-width: 50px;
 }
