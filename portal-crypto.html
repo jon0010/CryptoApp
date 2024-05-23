@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Crypto - CryptoApp</title>
     <link rel="shortcut icon" href="" type="image/svg+xml">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./portal-crypto.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -33,15 +33,42 @@
         </nav>
     </header>
 
+    <div class="sidebar">
+        <h4>Buscar cripto</h4>
+        <input placeholder="Type something here...." class="input-search" name="text" type="text" />
+        <h4>Filtro por precio</h4>
+
+        <select id="sortSelect" class="select">
+            <option value="default">Elegí una opcion</option>
+            <option value="asc">Menor precio primero</option>
+            <option value="desc">Mayor precio primero</option>
+        </select>
+    </div>
+
     <div class="background-container">
         <div class="landing-page">
-            <h1 class="title">Bienvenido a CryptoApp</h1>
-            <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, laborum?</p>
+            <h1 class="title">Portal crypto</h1>
+            <p class="subtitle">Hace un seguimiento y descubra las
+                criptomonedas más interesantes según el mercado y la actividad en Crypto app.
+            </p>
         </div>
+    </div>
+
+    <main>
+        <div class="container" id="crypto-container">
+            <!-- Las tarjetas de criptomonedas de portal-crypto.js irian aca -->
+        </div>
+        <div class="pagination">
+            <button id="prevPage">Anterior</button>
+            <button id="nextPage">Siguiente</button>
+        </div>
+    </main>
 
     <footer>
         <p>&copy; 2024 CryptoApp. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="./portal-crypto.js"></script>
 </body>
 
 </html>
