@@ -131,7 +131,8 @@ header {
   font-size: 1rem;
   color: #1c1f22;  
 }
-.select_pais option(:first-child){
+
+.select_pais option:first-child{
   color: #b0b0b0;  
 }
 .select_pais option:not(first-child) {
