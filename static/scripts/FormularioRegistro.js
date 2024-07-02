@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
 	})
 
-	form.addEventListener("submit", (event)=> {
+	form.addEventListener("submit", async (event)=> {
 		
 		event.preventDefault();
 
@@ -43,7 +43,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
         const correo = document.getElementById('correo').value;
         const contraseña = document.getElementById('contraseña').value;
         const confirmarContraseña = document.getElementById('confirmarContraseña').value;
-
+		const usuario = document.getElementById('user').value;
+        
         const namePattern = /^[a-z A-Z]{5,}$/;
         
 		if (!namePattern.test(nombre) || !namePattern.test(apellido)) {
@@ -73,10 +74,39 @@ document.addEventListener("DOMContentLoaded", ()=> {
             alert('Las contraseñas no coinciden.');
             return;
         }
-        
+        /*"nombre": nombre,
+                "apellido": apellido,
+                "email": correo,
+                "password": contraseña,
+				"user": usuario*/
+		const response = await fetch("/api/register", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            	name: nombre,
+            	lname: apellido,
+                email:correo,
+                pass:contraseña,
+				user:usuario 
+            })
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert("BUTO");
+			console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+		
+
+		console.log(response)
 		alert('Felicitaciones, te has registrado correctamente');
 		
     });
 
-    checkForm();
+    //checkForm();
 });

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - CryptoApp</title>
+    <link rel="shortcut icon" href="" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles/contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="./scripts/mensaje.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <img src="https://res.cloudinary.com/dkpotpaaf/image/upload/v1715276192/c307523c5ac543c1a8ec415e02ecba6e_ri3mn4.png"
+                        alt="Logo de CryptoApp">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="portal-crypto.html">Portal Crypto</a></li>
+                    <li><a href="about-us.html">Sobre nosotros</a></li>
+                    <li><a href="contact.html">Contacto</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html">Iniciar sesión</a>
+                    <a href="register.html">Registrarse</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="background-container">
+        <div class="landing-page">
+            <h1 class="title">Sección de contacto</h1>
+            <p class="subtitle">Tenes una consulta? estamos para ayudarte</p>
+
+            <section class="form-register">
+                <h4>Ingresa tu nombre, correo electrónico y consulta, nos comunicamos a la brevedad</h4>
+                <form id="formularioConsulta">
+                    <input class="controls" type="text" name="nombre" id="nombre" required
+                        placeholder="Ingrese su nombre">
+                    <input class="controls" type="email" name="correo" id="correo"
+                        placeholder="Ingrese su Correo Electrónico">
+                    <textarea class="controlmsj" name="mensaje" id="mensaje"
+                        placeholder="Ingrese su consulta"></textarea>
+                    <input class="Botons" type="submit" id="button" disabled value="Enviar">
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CryptoApp. Todos los derechos reservados.</p>
+    </footer>
+</body>
+
+</html>
