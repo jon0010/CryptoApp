@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for,jsonify
+from flask import Flask, request, render_template, redirect, url_for,jsonify,send_file
 import psycopg2
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ conn = psycopg2.connect(
     port= 5432
 )
 
-@app.post('/api/register') #Funciona generando el post con Thunder Client
+@app.post("/api/register") #Funciona generando el post con Thunder Client
 def register():
     data = request.get_json()
     nombre = data['name']
@@ -31,9 +31,9 @@ def register():
         return jsonify(message=str(e)), 400
     
 
-@app.get('/')
+@app.get("/")
 def home():
-    return send_file('static/be-index.html')
+    return send_file("static/index.html")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000, host='localhost')

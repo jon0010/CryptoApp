@@ -92,18 +92,13 @@ document.addEventListener("DOMContentLoaded", ()=> {
 				user:usuario 
             })
         })
-        .then(response => response.text())
-        .then(data => {
-            alert(data);
-			console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        const data = await response.json();
+
+        
 
 		
 
-		console.log(response)
+		console.log(data)
 		alert('Felicitaciones, te has registrado correctamente');
 		
     });
