@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         })
         .then(response => response.text())
         .then(data => {
-            alert("BUTO");
+            alert(data);
 			console.log(data);
         })
         .catch(error => {
