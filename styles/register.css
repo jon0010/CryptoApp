@@ -119,9 +119,36 @@ header {
   border-radius: 5px;
   font-size: 1rem;
   color: white;
-  cursor: not-allowed;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.Botons:hover {
+  opacity:1;
 }
 
+.select_pais{
+  width: 104%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #1c1f22;  
+}
+
+.select_pais option:first-child{
+  color: #b0b0b0;  
+}
+.select_pais option:not(first-child) {
+  color: #000;
+  color: #1c1f22;
+}
+.label_pais{
+  margin-top: 0%;
+  padding-top: 0%;
+  text-align: left;
+  display:flex;
+}
 
 footer {
   background-color: #1c1f22;
