@@ -39,23 +39,28 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
 	})
 
-	form.addEventListener("submit", (event)=> {
+	form.addEventListener("submit", async (event)=> {
 		
 		event.preventDefault();
 
 		const correo = document.getElementById('correo').value;
         const contraseña = document.getElementById('contraseña').value;
         
-        const correoPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        const correoPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/; //ojo con esto
         
-		if (!correoPattern.test(correo)) {
+		/*if (!correoPattern.test(correo)) {
 
 			alert('Por favor, ingresa un e-mail válido.');
 			return;
 
-		}
+		}*/ // Modificado esto para incoporar el usuario
+		
 
 		const contraseñaPattern = /^[^ ]{5,12}$/;
+		if (correo.trim() === '') {
+            alert('Por favor, ingrese su usuario o correo.');
+            return;
+        }
 
 		if (contraseña.trim() === '') {
             alert('Por favor, ingrese su contraseña.');
@@ -69,7 +74,28 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
         
         
-		alert('Excelente. Ya te has logueado en el sistema');
+		try {
+            const response = await fetch("http://localhost:5000/api/login", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: correo,
+                    pass: contraseña,
+                })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+				console.log(data);
+                alert('Excelente. Ya te has logueado en el sistema');
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     });
 
     checkForm();
