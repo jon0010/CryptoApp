@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
                 "email": correo,
                 "password": contraseña,
 				"user": usuario*/
-		const response = await fetch("/api/register", {
+		const response = await fetch("http://localhost:5000/api/register", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -87,18 +87,18 @@ document.addEventListener("DOMContentLoaded", ()=> {
             body: JSON.stringify({
             	name: nombre,
             	lname: apellido,
-                email:correo,
-                pass:contraseña,
-				user:usuario 
+                email: correo,
+                pass: contraseña,
+				user: usuario,
             })
         })
-        const data = await response.json();
-
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
         
+        /*const data = await response.json();
+        console.log(data.message);*/
 
-		
-
-		console.log(data)
 		alert('Felicitaciones, te has registrado correctamente');
 		
     });
