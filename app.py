@@ -60,6 +60,28 @@ def register():
     
     return jsonify({"message": usuario_bd}),201
 
+@app.post('/api/login')
+def login():
+    data = request.get_json()
+    correo = data.get('email')
+    password = data.get('pass')
+
+    try:
+       # conectar a la bbdd
+        conn = get_connection()
+        # crear un cursor -- se encarga de ejecutar las queries
+        cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+        cursor.execute('SELECT * FROM users_crypto WHERE email = %s OR usuario = %s', (correo,correo,))
+        user = cursor.fetchone()
+        cursor.close()
+        
+        if user and user['password'] == password:  # Habría que implementar algo sobre cifrado de contraseñas pero por ahora esto
+            return jsonify(message="Login exitoso", usuario=user) 
+        else:
+            return jsonify(message="Correo o contraseña incorrectos"), 401
+    except Exception as e:
+        return jsonify(message=str(e)), 400
+
 @app.get("/")
 def connect():
     return send_file("index.html")
