@@ -69,8 +69,7 @@ cryptoform.addEventListener("submit", async (event) => {
     headers: {
       "Content-Type": "application/json",
     },
-    mode: "no-cors",
-
+    
     body: JSON.stringify({
       name: crypto_name,
       symbol: crypto_symbol,
