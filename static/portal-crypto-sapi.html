@@ -45,32 +45,29 @@
       <section class="form-register" id="crypto-creation">
         <h2>Crear una crypto</h2>
 
-        <form id="new_crypto_form">
-          <input class="controls" type="text" name="name" id="name" required placeholder="Ingrese el nombre del crypto">
-          <input class="controls" type="text" name="symbol" id="symbol" required placeholder="Ingrese su símbolo (3 caracteres)">
-          <input class="controls" type="number" name="usd" id="price_usd" required placeholder="Ingrese el valor en dólares.">
-          <input class="Botons" type="submit" id="submit" disabled value="Crear Crypto">
+        <form id="cryptoform">
+          <input class="controls" type="text" name="name" id="crfor-name" required placeholder="Ingrese el nombre del crypto">
+          <input class="controls" type="text" name="symbol" id="crfor-symbol" required placeholder="Ingrese su símbolo (3 caracteres)">
+          <input class="controls" type="number" name="usd" id="crfor-price_usd" required placeholder="Ingrese el valor en dólares.">
+          <input class="Botons" type="submit" id="submit" value="Crear Crypto">
+          <input type="number" class="form-control" id="crypto-id" value="">
         </form>
 
       </section>
       
     </div>
     <div class="background-container">
-      <section class="table-crypto" id="movies-list">
+      <section class="table-crypto" id="crypto_list">
 
         <h2>Listado de pelis</h2>
 
-        <table class="table table-hover" id="movies-table">
+        <table class="table table-hover" id="crypto_table">
           <thead>
             <tr class="table-dark">
               <th scope="col">Nombre</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Lanzamiento</th>
-              <th scope="col">Puntuación</th>
-              <th scope="col">Idioma</th>
-              <th scope="col">Autor</th>
-              <th scope="col">Géneros</th>
-              <th scope="col">Personajes</th>
+              <th scope="col">Símbolo</th>
+              <th scope="col">Precio [USD]</th>
+              <th scope="col">Última Actualización</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
@@ -83,44 +80,7 @@
   </div>
 
 
-  <div class="background-container">
-    <div class="landing-page">
-      <h1 class="title">Crypto Imagine</h1>
-      <p class="subtitle">Hace un seguimiento y descubra las
-        criptomonedas más interesantes según el mercado y la actividad en Crypto app.
-      </p>
-    </div>
-  </div>
-
-  <main>
-    <main class="container">
-
-
-      <section id="movies-list">
-
-        <h2 class="text-center mt-3 pb-1">Listado de pelis</h2>
-
-        <table class="table table-hover" id="movies-table">
-          <thead>
-            <tr class="table-primary">
-              <th scope="col">Nombre</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Lanzamiento</th>
-              <th scope="col">Puntuación</th>
-              <th scope="col">Idioma</th>
-              <th scope="col">Autor</th>
-              <th scope="col">Géneros</th>
-              <th scope="col">Personajes</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-
-      </section>
-    </main>
+  
   </main>
 
   <footer>

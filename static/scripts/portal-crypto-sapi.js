@@ -1,85 +1,109 @@
 
-const moviesForm = document.querySelector("#movies-form");
+//recibo el formulario
+const cryptoform = document.getElementById("cryptoform");
 
-function addMovieRow(
-  movieId,
+
+//función agregar crypto
+function add_crypto(
+  id,
   name,
-  description,
-  release_date,
-  rating,
-  language,
-  author,
-  genres,
-  characters
+  symbol,
+  price_usd,
+  last_updated
 ) {
-  const tableBody = document.querySelector("#movies-table tbody");
+  const tableBody = document.getElementById("crypto_table");
 
   const row = document.createElement("tr");
+  row.id = `crypto-${id}`;
   row.innerHTML = `
         <td>${name}</td>
-        <td>${description}</td>
-        <td>${release_date}</td>
-        <td>${rating}</td>
-        <td>${language}</td>
-        <td>${author}</td>
-        <td>${genres}</td>
-        <td>${characters}</td>
+        <td>${symbol}</td>
+        <td>${price_usd}</td>
+        <td>${last_updated}</td>
         <td>
-            <button data-id="${movieId}" class="btn btn-danger btn-sm">Eliminar</button>
-            <button class="btn btn-warning btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+            <button class="btn btn-warning btn-sm edit-btn">Editar</button>
         </td>
     `;
+
+  const deleteButton = row.querySelector(".delete-btn");
+  deleteButton.addEventListener("click", async () => {
+    const response = await fetch(`http:/localhost:5000/api/crypto/<crypto_id>`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    rmCryptoRow(data.id);
+  });
+  tableBody.appendChild(row);
+
+  const editButton = row.querySelector(".edit-btn");
+  editButton.addEventListener("click", async () => {
+    cryptoForm["crypto-id"].value = crypto_id;
+    cryptoForm["name"].value = name;
+    cryptoform["symbol"].vale = symbol;
+    cryptoForm["price_usd"].value = price_usd;
+    cryptoForm["last_update"].valueAsDate = new Date(last_updated);
+  });
   tableBody.appendChild(row);
 }
 
-moviesForm.addEventListener("submit", async (event) => {
+function rmMovieRow(crypto_id) {
+  const row = document.querySelector(`#crypto-${crypto_id}`);
+  row.remove();
+}
+
+cryptoform.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const movieName = moviesForm["movieName"].value;
-  const movieDescription = moviesForm["movieDescription"].value;
-  const releaseDate = moviesForm["releaseDate"].value;
+  const crypto_id= cryptoform["crypto-id"].value;
+  const crypto_name = cryptoform["crfor-name"].value;
+  const crypto_symbol = cryptoform["crfor-symbol"].value;
+  const crypto_price = cryptoform["crfor-price_usd"].value;
+  const crypto_lastupdate = new Date();
 
-  const response = await fetch("/api/movies", {
-    method: "POST",
+  const url = crypto_id !== "" ? `http://localhost:5000/api/crypto/${crypto_id}` : 'http://localhost:5000/api/new_crypto';
+  const method = crypto_id !== "" ? `PUT` : "POST";
+
+  const response = await fetch(url, {
+    method: method,
     headers: {
       "Content-Type": "application/json",
     },
+    mode: "no-cors",
+
     body: JSON.stringify({
-      name: movieName,
-      description: movieDescription,
-      release_date: releaseDate,
-      author_id: 2,
-      language: "English",
-      rating: "8.5",
+      name: crypto_name,
+      symbol: crypto_symbol,
+      price_usd: crypto_price,
+      last_updated: crypto_lastupdate,
     }),
   });
-
   const data = await response.json();
+  console.log(data)
+  if (crypto_id !== "") {
+    rmMovieRow(data.movie_id);
+  }
   addMovieRow(
+    data.id,
     data.name,
-    data.description,
-    data.release_date,
-    data.rating,
-    data.language,
-    data.author,
-    data.genres,
-    data.characters
-  );
-});
+    data.symbol,
+    data.price_usd,
+    data.last_updated,
+    );
 
+  //cryptoform.reset();
+});
+/*
 window.addEventListener("DOMContentLoaded", async () => {
-  const response = await fetch("/api/movies");
+  const response = await fetch("http://localhost:5000/api/crypto");
   const data = await response.json();
-  for (movie of data) {
+  for (crypto of data) {
     addMovieRow(
-      movie.name,
-      movie.description,
-      movie.release_date,
-      movie.rating,
-      movie.language,
-      movie.author,
-      movie.genres,
-      movie.characters
+      crypto.id,
+      crypto.name,
+      crypto.symbol,
+      crypto.price_usd,
+      crypto.last_updated,
     );
   }
-});
+});*/
