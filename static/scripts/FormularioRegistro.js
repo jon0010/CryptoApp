@@ -1,5 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", ()=> {
+document.addEventListener("DOMContentLoaded", async()=> {
 
 	const form = document.getElementById("formularioRegistro");
 	const submitButton = document.getElementById("submit");
@@ -23,16 +23,36 @@ document.addEventListener("DOMContentLoaded", ()=> {
 		if (password !== confirmPassword){
 			allFilled = false;
 		}*/
+        
 
 		submitButton.disabled = !allFilled;
 
-	}
+	};
+
+    const paisSelect = document.getElementById("pais");
+
+    try {
+        const response = await fetch("http://localhost:5000/api/countries");
+        const paises = await response.json();
+        paises.forEach(pais => {
+            const option = document.createElement("option");
+            option.value = pais.id;
+            option.textContent = pais.nicename;
+            if (pais.id === 10) { // Elije Arg como predilecto
+                option.selected = true;
+            }
+            paisSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al obtener los países:", error);
+    }
+    
 	
 
 	inputs.forEach(input => {
 		input.addEventListener("input", checkForm);
 
-	})
+	});
 
 	form.addEventListener("submit", async (event)=> {
 		
@@ -44,7 +64,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         const contraseña = document.getElementById('contraseña').value;
         const confirmarContraseña = document.getElementById('confirmarContraseña').value;
 		const usuario = document.getElementById('user').value;
-        
+        const countryv = document.getElementById('pais').value;
         const namePattern = /^[a-z A-Z]{5,}$/;
         
 		if (!namePattern.test(nombre) || !namePattern.test(apellido)) {
@@ -90,6 +110,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
                 email: correo,
                 pass: contraseña,
 				user: usuario,
+                country: countryv, 
             })
         })
         .then(response => response.json())

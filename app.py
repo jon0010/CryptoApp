@@ -4,7 +4,7 @@ import psycopg2
 from flask import Flask, jsonify, request, send_file
 from psycopg2 import connect, extras
 from flask_cors import CORS
-
+from datetime import datetime, timezone 
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -19,6 +19,26 @@ def get_connection():
         password="123456",
     )
 
+@app.get("/api/countries")
+def get_countries():
+
+    # conectar a la bbdd
+    conn = get_connection()
+    # crear un cursor -- se encarga de ejecutar las queries
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    # ejecutar la query para obtener registros
+    cursor.execute("SELECT id, nicename FROM country")
+    list_countries = cursor.fetchall()
+
+    # cerrar el cursor y la conexión
+    cursor.close()
+    conn.close()
+
+    # retornar los resultados
+    return jsonify(list_countries)
+
+
 
 @app.post("/api/register") #Funciona generando el post con Thunder Client
 def register():
@@ -29,6 +49,7 @@ def register():
     correo = data['email']
     password2 = data['pass']
     user = data['user']
+    countryv=data['country']
 
     # conectar a la bbdd
     conn = get_connection()
@@ -36,8 +57,8 @@ def register():
     cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
     # ejecutar la query para obtener registros
     query = """
-    INSERT INTO users_crypto (usuario, nombre, apellido, email, password)
-    VALUES (%s, %s, %s, %s, %s)
+    INSERT INTO users_crypto (usuario, nombre, apellido, email, password,country)
+    VALUES (%s, %s, %s, %s, %s,%s)
     RETURNING *
     """
     cursor.execute(
@@ -47,7 +68,8 @@ def register():
             nombre,
             apellido,
             correo,
-            password2,            
+            password2,
+            countryv,            
         ),
     )
     usuario_bd = cursor.fetchone()
@@ -82,9 +104,179 @@ def login():
     except Exception as e:
         return jsonify(message=str(e)), 400
 
+
+#Obtener crypto ficticias
+@app.get("/api/crypto")
+def get_crypto():
+
+    # conectar a la bbdd
+    conn = get_connection()
+    # crear un cursor -- se encarga de ejecutar las queries
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    # ejecutar la query para obtener registros
+    cursor.execute("SELECT * FROM crypto_values")
+    crypto_fic = cursor.fetchall()
+
+    # cerrar el cursor y la conexión
+    cursor.close()
+    conn.close()
+
+    # retornar los resultados
+    return jsonify(crypto_fic)
+
+#Crear crypto ficticias
+#Funciona pero no hay verificación de duplicado
+@app.post("/api/new_crypto")
+def create_crypto():
+    
+    crypto_data = request.get_json()
+
+    # conectar a la bbdd
+    conn = get_connection()
+    # crear un cursor -- se encarga de ejecutar las queries
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    #fecha
+    dt= datetime.now(timezone.utc)
+    # ejecutar la query cargar
+    query = """
+    INSERT INTO crypto_values (name, symbol, price_usd)
+    VALUES (%s, %s, %s)
+    RETURNING *
+    """
+    cursor.execute(
+        query=query,
+        vars=(
+            crypto_data["name"],
+            crypto_data["symbol"],
+            crypto_data["price_usd"],
+        ),
+    )
+    crypto = cursor.fetchone()
+    conn.commit()
+    
+    # cerrar el cursor y la conexión
+    cursor.close()
+    conn.close()
+
+    if crypto is None:
+        return jsonify({"message": "Crypto no creada"}), 400
+
+    # retornar los resultados
+    return jsonify(crypto), 201
+
+#Funciona
+@app.get("/api/crypto/<crypto_id>") #Con el símbolo
+def obt_crypto(crypto_id):
+    # conectar a la bbdd
+    conn = get_connection()
+    # crear un cursor -- se encarga de ejecutar las queries
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    # ejecutar la query para obtener registros
+    cursor.execute(
+        query="SELECT * FROM crypto_values WHERE symbol = %s", vars=(crypto_id,)
+    )
+    crypto = cursor.fetchone()
+    # cerrar el cursor y la conexión
+    cursor.close()
+    conn.close()
+    
+    if crypto is None:
+        return jsonify({"message": "No se encontró la crypto."}), 404
+
+    # retornar los resultados
+    return jsonify(crypto)
+
+#Funciona
+@app.delete("/api/crypto/<crypto_id>")
+def delete_crypto(crypto_id):
+    # conectar a la bbdd
+    conn = get_connection()
+    # crear un cursor -- se encarga de ejecutar las queries
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    # ejecutar la query para obtener registros
+    cursor.execute(
+        query="DELETE FROM crypto_values WHERE id = %s RETURNING *", vars=(crypto_id,)
+    )
+    crypto = cursor.fetchone()
+    conn.commit()
+    # cerrar el cursor y la conexión
+    cursor.close()
+    conn.close()
+    
+    if crypto is None:
+        return jsonify({"message": "No se encontró la crypto."}), 404
+
+    # retornar los resultados
+    return jsonify(crypto)
+
+
+# PUT / PATCH
+
+@app.patch("/api/id/change_pass")
+def update_crypto(crypto_id):
+    return jsonify({"message:": "hola"})
+    
+
+
+#Funciona OK
+@app.put("/api/crypto/<crypto_id>/put")
+def update_crypto_put(crypto_id):
+    crypto_data = request.get_json()
+
+    # conectar a la bbdd
+    conn = get_connection()
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    # fecha
+    timestamp = datetime.now()
+
+    try:
+        # verificar si el registro existe
+        cursor.execute("SELECT * FROM crypto_values WHERE id = %s", (crypto_id,))
+        crypto = cursor.fetchone()
+        if crypto is None:
+            return jsonify({"message": "Crypto no encontrada"}), 404
+
+        # ejecutar la query para actualizar
+        query = """
+        UPDATE crypto_values
+        SET name = %s, symbol = %s, price_usd = %s, last_updated = %s
+        WHERE id = %s
+        RETURNING *
+        """
+        cursor.execute(
+            query,
+            (
+                crypto_data["name"],
+                crypto_data["symbol"],
+                crypto_data["price_usd"],
+                timestamp,
+                crypto_id,
+            ),
+        )
+        updated_crypto = cursor.fetchone()
+        conn.commit()
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"message": "Error al actualizar la crypto", "error": str(e)}), 500
+    finally:
+        # cerrar el cursor y la conexión
+        cursor.close()
+        conn.close()
+
+    # retornar los resultados
+    return jsonify(updated_crypto), 200
+
+
 @app.get("/")
 def connect():
     return send_file("index.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='localhost')
