@@ -20,7 +20,7 @@ def get_connection():
     )
 
 @app.get("/api/countries")
-def get_crypto():
+def get_countries():
 
     # conectar a la bbdd
     conn = get_connection()
@@ -49,6 +49,7 @@ def register():
     correo = data['email']
     password2 = data['pass']
     user = data['user']
+    countryv=data['country']
 
     # conectar a la bbdd
     conn = get_connection()
@@ -56,8 +57,8 @@ def register():
     cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
     # ejecutar la query para obtener registros
     query = """
-    INSERT INTO users_crypto (usuario, nombre, apellido, email, password)
-    VALUES (%s, %s, %s, %s, %s)
+    INSERT INTO users_crypto (usuario, nombre, apellido, email, password,country)
+    VALUES (%s, %s, %s, %s, %s,%s)
     RETURNING *
     """
     cursor.execute(
@@ -67,7 +68,8 @@ def register():
             nombre,
             apellido,
             correo,
-            password2,            
+            password2,
+            countryv,            
         ),
     )
     usuario_bd = cursor.fetchone()
