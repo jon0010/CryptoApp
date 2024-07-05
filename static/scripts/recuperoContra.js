@@ -37,23 +37,49 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
 	})
 
-	form.addEventListener("submit", (event)=> {
+	form.addEventListener("submit", async (event)=> {
 		
 		event.preventDefault();
 
 		const correo = document.getElementById('correo').value;
-        
+		
+        const contraseña = document.getElementById('contraseña').value;
+        const confirmarContraseña = document.getElementById('confirmarContraseña').value;
+
         const correoPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-        
-		if (!correoPattern.test(correo)) {
+		const contraseñaPattern = /^[^ ]{5,12}$/;
 
-			alert('Por favor, ingresa un e-mail válido.');
-			return;
+		if (!contraseñaPattern.test(contraseña)) {
+            alert('Por favor, ingresa una contraseña valida. Debe contener entre 5 y 12 caracteres.');
+            return;
+        }
 
-		}
-        
-        
-		alert('Te hemos enviado un e-mail que te ayudará a recuperar tu contraseña');
+        if (contraseña.trim() === '' || confirmarContraseña.trim() === '') {
+            alert('Por favor, ingresa y confirma tu contraseña.');
+            return;
+        }
+
+        if (contraseña !== confirmarContraseña) {
+            alert('Las contraseñas no coinciden.');
+            return;
+        }
+		
+		//lo hago así sin id porque no puedo mandar el correo sino
+        const response = await fetch(`http://localhost:5000/api/change_pass`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            	password: contraseña,
+				identificador: correo,
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+
+		
     });
 
     checkForm();

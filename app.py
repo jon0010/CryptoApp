@@ -216,9 +216,51 @@ def delete_crypto(crypto_id):
 
 # PUT / PATCH
 
-@app.patch("/api/id/change_pass")
-def update_crypto(crypto_id):
-    return jsonify({"message:": "hola"})
+@app.patch("/api/change_pass")
+def update_password():
+    password_new = request.get_json()
+
+    # conectar a la bbdd
+    conn = get_connection()
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    try:
+        identificador=password_new["identificador"]
+        # verificar si el registro existe
+        cursor.execute("SELECT * FROM users_crypto WHERE email = %s or usuario = %s", (identificador,identificador))
+        contra = cursor.fetchone()
+        if contra is None:
+            return jsonify({"message": "Usuario no encontrado"}), 404
+
+        # ejecutar la query para actualizar
+        query = """
+        UPDATE users_crypto
+        SET password = %s
+        WHERE email = %s or usuario=%s
+        RETURNING *
+        """
+        cursor.execute(
+            query,
+            (
+                password_new["password"],
+                identificador,
+                identificador,
+            ),
+        )
+        updated_password = cursor.fetchone()
+        conn.commit()
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"message": "Error al actualizar la contraseña", "error": str(e)}), 500
+    finally:
+        # cerrar el cursor y la conexión
+        cursor.close()
+        conn.close()
+
+    # retornar los resultados
+    return jsonify(updated_password), 200
+
     
 
 
