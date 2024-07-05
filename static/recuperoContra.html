@@ -44,11 +44,15 @@
             <p class="subtitle">Enviaremos un email a tu casilla para reestablecer tu contraseña</p>
 
             <section class="form-register">
-                <h4>Ingrese su correo electrónico y presione Enviar</h4>
+                <h4>Ingrese su correo electrónico o usuario y presione Enviar</h4>
 
                 <form id="recuperoContraseña">
-                    <input class="controls" type="email" name="correo" id="correo" required
+                    <input class="controls" type="text" name="correo" id="correo" required
                         placeholder="Ingrese su usuario o Correo Electrónico">
+                    <input class="controls" type="password" name="contraseña" id="contraseña" required
+                        placeholder="Ingrese su contraseña">
+                    <input class="controls" type="password" name="confirmarContraseña" id="confirmarContraseña" required
+                        placeholder="Confirmar su contraseña">
                     <input class="Botons" type="submit" id="submit" disabled value="Enviar">
                 </form>
 
