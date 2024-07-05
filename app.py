@@ -19,6 +19,26 @@ def get_connection():
         password="123456",
     )
 
+@app.get("/api/countries")
+def get_crypto():
+
+    # conectar a la bbdd
+    conn = get_connection()
+    # crear un cursor -- se encarga de ejecutar las queries
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    # ejecutar la query para obtener registros
+    cursor.execute("SELECT id, nicename FROM country")
+    list_countries = cursor.fetchall()
+
+    # cerrar el cursor y la conexión
+    cursor.close()
+    conn.close()
+
+    # retornar los resultados
+    return jsonify(list_countries)
+
+
 
 @app.post("/api/register") #Funciona generando el post con Thunder Client
 def register():
