@@ -259,7 +259,7 @@ def update_password():
         conn.close()
 
     # retornar los resultados
-    return jsonify(updated_password), 200
+    return jsonify({"message": "Contraseña cambiada con éxito.","updated_password":updated_password}), 200
 
     
 
