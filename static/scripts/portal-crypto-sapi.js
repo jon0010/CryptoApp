@@ -3,7 +3,7 @@
 const cryptoform = document.getElementById("cryptoform");
 
 
-//función agregar crypto
+//función agregar fila de crypto
 function add_crypto(
   id,
   name,
@@ -15,6 +15,7 @@ function add_crypto(
 
   const row = document.createElement("tr");
   row.id = `crypto-${id}`;
+  const symbolo = symbol;
   row.innerHTML = `
         <td>${name}</td>
         <td>${symbol}</td>
@@ -27,8 +28,9 @@ function add_crypto(
     `;
 
   const deleteButton = row.querySelector(".delete-btn");
+  //botón de eliminar registro. funciona OK
   deleteButton.addEventListener("click", async () => {
-    const response = await fetch(`http:/localhost:5000/api/crypto/<crypto_id>`, {
+    const response = await fetch(`http://localhost:5000/api/crypto/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -38,16 +40,15 @@ function add_crypto(
 
   const editButton = row.querySelector(".edit-btn");
   editButton.addEventListener("click", async () => {
-    cryptoForm["crypto-id"].value = crypto_id;
-    cryptoForm["name"].value = name;
-    cryptoform["symbol"].vale = symbol;
-    cryptoForm["price_usd"].value = price_usd;
-    cryptoForm["last_update"].valueAsDate = new Date(last_updated);
+    cryptoform["crypto_edit"].value = `${id}`;
+    cryptoform["crfor-name"].value = name;
+    cryptoform["crfor-symbol"].vale = symbolo;
+    cryptoform["crfor-price_usd"].value = price_usd;
   });
   tableBody.appendChild(row);
 }
 
-function rmMovieRow(crypto_id) {
+function rmCryptoRow(crypto_id) {
   const row = document.querySelector(`#crypto-${crypto_id}`);
   row.remove();
 }
@@ -55,13 +56,13 @@ function rmMovieRow(crypto_id) {
 cryptoform.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const crypto_id= cryptoform["crypto-id"].value;
+  const crypto_id= cryptoform["crypto_edit"].value;
   const crypto_name = cryptoform["crfor-name"].value;
   const crypto_symbol = cryptoform["crfor-symbol"].value;
   const crypto_price = cryptoform["crfor-price_usd"].value;
-  const crypto_lastupdate = new Date();
+ // const crypto_lastupdate = new Date();
 
-  const url = crypto_id !== "" ? `http://localhost:5000/api/crypto/${crypto_id}` : 'http://localhost:5000/api/new_crypto';
+  const url = crypto_id !== "" ? `http://localhost:5000/api/crypto/${crypto_id}/put` : 'http://localhost:5000/api/new_crypto';
   const method = crypto_id !== "" ? `PUT` : "POST";
 
   const response = await fetch(url, {
@@ -69,20 +70,19 @@ cryptoform.addEventListener("submit", async (event) => {
     headers: {
       "Content-Type": "application/json",
     },
-    
+  
     body: JSON.stringify({
       name: crypto_name,
       symbol: crypto_symbol,
       price_usd: crypto_price,
-      last_updated: crypto_lastupdate,
     }),
   });
   const data = await response.json();
   console.log(data)
   if (crypto_id !== "") {
-    rmMovieRow(data.movie_id);
+    rmCryptoRow(data.id);
   }
-  addMovieRow(
+  add_crypto(
     data.id,
     data.name,
     data.symbol,
@@ -92,12 +92,13 @@ cryptoform.addEventListener("submit", async (event) => {
 
   //cryptoform.reset();
 });
-/*
+
 window.addEventListener("DOMContentLoaded", async () => {
   const response = await fetch("http://localhost:5000/api/crypto");
   const data = await response.json();
-  for (crypto of data) {
-    addMovieRow(
+  console.log(data) //prueba
+  for (const crypto of data) {
+    add_crypto(
       crypto.id,
       crypto.name,
       crypto.symbol,
@@ -105,4 +106,4 @@ window.addEventListener("DOMContentLoaded", async () => {
       crypto.last_updated,
     );
   }
-});*/
+});

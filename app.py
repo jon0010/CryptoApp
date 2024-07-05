@@ -177,7 +177,7 @@ def delete_crypto(crypto_id):
 
     # ejecutar la query para obtener registros
     cursor.execute(
-        query="DELETE FROM crypto_values WHERE symbol = %s RETURNING *", vars=(crypto_id,)
+        query="DELETE FROM crypto_values WHERE id = %s RETURNING *", vars=(crypto_id,)
     )
     crypto = cursor.fetchone()
     conn.commit()
@@ -193,15 +193,62 @@ def delete_crypto(crypto_id):
 
 
 # PUT / PATCH
-@app.patch("/api/crypto/<crypto_id>")
-def update_movie(crypto_id):
-    return {"title": "Spiderman 2", "year": 2002, "id": crypto_id}
+
+@app.patch("/api/id/change_pass")
+def update_crypto(crypto_id):
+    return jsonify({"message:": "hola"})
+    
 
 
-@app.post("/api/movies/<crypto_id>")
-def update_movie_put(crypto_id):
-    return {"title": "Spiderman 2", "year": 2002, "id": crypto_id}
+#Funciona OK
+@app.put("/api/crypto/<crypto_id>/put")
+def update_crypto_put(crypto_id):
+    crypto_data = request.get_json()
 
+    # conectar a la bbdd
+    conn = get_connection()
+    cursor = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    # fecha
+    timestamp = datetime.now()
+
+    try:
+        # verificar si el registro existe
+        cursor.execute("SELECT * FROM crypto_values WHERE id = %s", (crypto_id,))
+        crypto = cursor.fetchone()
+        if crypto is None:
+            return jsonify({"message": "Crypto no encontrada"}), 404
+
+        # ejecutar la query para actualizar
+        query = """
+        UPDATE crypto_values
+        SET name = %s, symbol = %s, price_usd = %s, last_updated = %s
+        WHERE id = %s
+        RETURNING *
+        """
+        cursor.execute(
+            query,
+            (
+                crypto_data["name"],
+                crypto_data["symbol"],
+                crypto_data["price_usd"],
+                timestamp,
+                crypto_id,
+            ),
+        )
+        updated_crypto = cursor.fetchone()
+        conn.commit()
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"message": "Error al actualizar la crypto", "error": str(e)}), 500
+    finally:
+        # cerrar el cursor y la conexión
+        cursor.close()
+        conn.close()
+
+    # retornar los resultados
+    return jsonify(updated_crypto), 200
 
 
 @app.get("/")
