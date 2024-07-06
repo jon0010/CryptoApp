@@ -8,7 +8,16 @@ from datetime import datetime, timezone
 app = Flask(__name__)
 cors = CORS(app)
 
+'''
+Datos conexión BDD Render
+postgresql://postgresql:z7qjWOD4WwKGdMfbkHIIuaFMOrJLHMgh@dpg-cq4k8otds78s73clmer0-a.oregon-postgres.render.com/cryptoapp
 
+database="cryptoapp",
+user="postgresql",
+password="z7qjWOD4WwKGdMfbkHIIuaFMOrJLHMgh"
+host="dpg-cq4k8otds78s73clmer0-a.oregon-postgres.render.com"
+port=5432
+'''
 
 def get_connection():
     return psycopg2.connect(
