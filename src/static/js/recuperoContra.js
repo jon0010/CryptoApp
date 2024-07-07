@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         }
 		
 		//lo hago así sin id porque no puedo mandar el correo sino
-        const response = await fetch(`http://localhost:5000/api/change_pass`, {
+        const response = await fetch(`/api/change_pass`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
