@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
     const paisSelect = document.getElementById("pais");
 
     try {
-        const response = await fetch("http://localhost:5000/api/countries");
+        const response = await fetch("/api/countries");
         const paises = await response.json();
         paises.forEach(pais => {
             const option = document.createElement("option");
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
                 "email": correo,
                 "password": contraseña,
 				"user": usuario*/
-		const response = await fetch("http://localhost:5000/api/register", {
+		const response = await fetch("/api/register", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

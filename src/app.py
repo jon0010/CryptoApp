@@ -17,15 +17,19 @@ user="postgresql",
 password="z7qjWOD4WwKGdMfbkHIIuaFMOrJLHMgh"
 host="dpg-cq4k8otds78s73clmer0-a.oregon-postgres.render.com"
 port=5432
+
+postgresql://cryptoapp_xy7t_user:SDm6c7R9RwwMhX45ROh4fKNRubKbbjqd@dpg-cq5121mehbks73bhvgng-a/cryptoapp_xy7t INTERNO
+
+postgresql://cryptoapp_xy7t_user:SDm6c7R9RwwMhX45ROh4fKNRubKbbjqd@dpg-cq5121mehbks73bhvgng-a.oregon-postgres.render.com/cryptoapp_xy7t EXTERNO
 '''
 
 def get_connection():
     return psycopg2.connect(
-        host="localhost",
+        host="dpg-cq5121mehbks73bhvgng-a.oregon-postgres.render.com",
         port=5432,
-        database="CryptoApp",
-        user="postgres",
-        password="123456",
+        database="cryptoapp_xy7t",
+        user="cryptoapp_xy7t_user",
+        password="SDm6c7R9RwwMhX45ROh4fKNRubKbbjqd",
     )
 
 @app.get("/api/countries")
@@ -325,9 +329,37 @@ def update_crypto_put(crypto_id):
 
 
 @app.get("/")
-def connect():
-    return send_file("index.html")
+def home():
+    return send_file("static/index.html")
 
+@app.get("/portal-crypto.html")
+def portal():
+    return send_file("static/portal-crypto.html")
+
+@app.get("/portal-crypto-sapi.html")
+def portalsapi():
+    return send_file("static/portal-crypto-sapi.html")
+
+@app.get("/about-us.html")
+def aboutus():
+    return send_file("static/about-us.html")
+
+@app.get("/contact.html")
+def contact():
+    return send_file("static/contact.html")
+
+
+@app.get("/login.html")
+def loginpag():
+    return send_file("static/login.html")
+
+@app.get("/register.html")
+def registerpag():
+    return send_file("static/register.html")
+
+@app.get("/recuperoContra.html")
+def recuperoContra():
+    return send_file("static/recuperoContra.html")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='localhost')

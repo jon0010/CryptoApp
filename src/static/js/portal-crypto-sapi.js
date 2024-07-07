@@ -30,7 +30,7 @@ function add_crypto(
   const deleteButton = row.querySelector(".delete-btn");
   //botón de eliminar registro. funciona OK
   deleteButton.addEventListener("click", async () => {
-    const response = await fetch(`http://localhost:5000/api/crypto/${id}`, {
+    const response = await fetch(`/api/crypto/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -62,7 +62,7 @@ cryptoform.addEventListener("submit", async (event) => {
   const crypto_price = cryptoform["crfor-price_usd"].value;
  // const crypto_lastupdate = new Date();
 
-  const url = crypto_id !== "" ? `http://localhost:5000/api/crypto/${crypto_id}/put` : 'http://localhost:5000/api/new_crypto';
+  const url = crypto_id !== "" ? `/api/crypto/${crypto_id}/put` : '/api/new_crypto';
   const method = crypto_id !== "" ? `PUT` : "POST";
 
   const response = await fetch(url, {
@@ -94,7 +94,7 @@ cryptoform.addEventListener("submit", async (event) => {
 });
 
 window.addEventListener("DOMContentLoaded", async () => {
-  const response = await fetch("http://localhost:5000/api/crypto");
+  const response = await fetch("/api/crypto");
   const data = await response.json();
   console.log(data) //prueba
   for (const crypto of data) {
