@@ -4,6 +4,8 @@
 ## Entrega Backend
 
 El sitio en cuestión es: https://cac-tpo-backend-292t.onrender.com/
+Nota: El sitio si está inactivo tarda en conectarse.
+
 Cuenta con lo siguiente:
 
 1) La BD está en Postgresql (Datos de conexión en app.py)
