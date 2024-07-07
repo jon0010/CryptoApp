@@ -1,5 +1,5 @@
 --
--- postgresqlQL database dump
+-- cryptoapp_xy7t_userQL database dump
 --
 
 -- Dumped from database version 16.3
@@ -39,7 +39,7 @@ COMMENT ON SCHEMA public IS 'standard public schema';
 
 --
 -- TOC entry 215 (class 1259 OID 16563)
--- Name: country_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
+-- Name: country_seq; Type: SEQUENCE; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 CREATE SEQUENCE public.country_seq
@@ -50,7 +50,7 @@ CREATE SEQUENCE public.country_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.country_seq OWNER TO postgresql;
+ALTER SEQUENCE public.country_seq OWNER TO cryptoapp_xy7t_user;
 
 SET default_tablespace = '';
 
@@ -58,7 +58,7 @@ SET default_table_access_method = heap;
 
 --
 -- TOC entry 216 (class 1259 OID 16564)
--- Name: country; Type: TABLE; Schema: public; Owner: postgresql
+-- Name: country; Type: TABLE; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 CREATE TABLE public.country (
@@ -72,11 +72,11 @@ CREATE TABLE public.country (
 );
 
 
-ALTER TABLE public.country OWNER TO postgresql;
+ALTER TABLE public.country OWNER TO cryptoapp_xy7t_user;
 
 --
 -- TOC entry 218 (class 1259 OID 16576)
--- Name: crypto_values; Type: TABLE; Schema: public; Owner: postgresql
+-- Name: crypto_values; Type: TABLE; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 CREATE TABLE public.crypto_values (
@@ -88,11 +88,11 @@ CREATE TABLE public.crypto_values (
 );
 
 
-ALTER TABLE public.crypto_values OWNER TO postgresql;
+ALTER TABLE public.crypto_values OWNER TO cryptoapp_xy7t_user;
 
 --
 -- TOC entry 219 (class 1259 OID 16582)
--- Name: crypto_values_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
+-- Name: crypto_values_id_seq; Type: SEQUENCE; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 CREATE SEQUENCE public.crypto_values_id_seq
@@ -104,12 +104,12 @@ CREATE SEQUENCE public.crypto_values_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.crypto_values_id_seq OWNER TO postgresql;
+ALTER SEQUENCE public.crypto_values_id_seq OWNER TO cryptoapp_xy7t_user;
 
 --
 -- TOC entry 4865 (class 0 OID 0)
 -- Dependencies: 219
--- Name: crypto_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
+-- Name: crypto_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 ALTER SEQUENCE public.crypto_values_id_seq OWNED BY public.crypto_values.id;
@@ -117,7 +117,7 @@ ALTER SEQUENCE public.crypto_values_id_seq OWNED BY public.crypto_values.id;
 
 --
 -- TOC entry 217 (class 1259 OID 16569)
--- Name: users_crypto; Type: TABLE; Schema: public; Owner: postgresql
+-- Name: users_crypto; Type: TABLE; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 CREATE TABLE public.users_crypto (
@@ -131,11 +131,11 @@ CREATE TABLE public.users_crypto (
 );
 
 
-ALTER TABLE public.users_crypto OWNER TO postgresql;
+ALTER TABLE public.users_crypto OWNER TO cryptoapp_xy7t_user;
 
 --
 -- TOC entry 220 (class 1259 OID 16586)
--- Name: users_crypto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresql
+-- Name: users_crypto_id_seq; Type: SEQUENCE; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 CREATE SEQUENCE public.users_crypto_id_seq
@@ -147,12 +147,12 @@ CREATE SEQUENCE public.users_crypto_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.users_crypto_id_seq OWNER TO postgresql;
+ALTER SEQUENCE public.users_crypto_id_seq OWNER TO cryptoapp_xy7t_user;
 
 --
 -- TOC entry 4866 (class 0 OID 0)
 -- Dependencies: 220
--- Name: users_crypto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresql
+-- Name: users_crypto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 ALTER SEQUENCE public.users_crypto_id_seq OWNED BY public.users_crypto.id;
@@ -160,7 +160,7 @@ ALTER SEQUENCE public.users_crypto_id_seq OWNED BY public.users_crypto.id;
 
 --
 -- TOC entry 4701 (class 2604 OID 16583)
--- Name: crypto_values id; Type: DEFAULT; Schema: public; Owner: postgresql
+-- Name: crypto_values id; Type: DEFAULT; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 ALTER TABLE ONLY public.crypto_values ALTER COLUMN id SET DEFAULT nextval('public.crypto_values_id_seq'::regclass);
@@ -168,7 +168,7 @@ ALTER TABLE ONLY public.crypto_values ALTER COLUMN id SET DEFAULT nextval('publi
 
 --
 -- TOC entry 4700 (class 2604 OID 16587)
--- Name: users_crypto id; Type: DEFAULT; Schema: public; Owner: postgresql
+-- Name: users_crypto id; Type: DEFAULT; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 ALTER TABLE ONLY public.users_crypto ALTER COLUMN id SET DEFAULT nextval('public.users_crypto_id_seq'::regclass);
@@ -177,7 +177,7 @@ ALTER TABLE ONLY public.users_crypto ALTER COLUMN id SET DEFAULT nextval('public
 --
 -- TOC entry 4854 (class 0 OID 16564)
 -- Dependencies: 216
--- Data for Name: country; Type: TABLE DATA; Schema: public; Owner: postgresql
+-- Data for Name: country; Type: TABLE DATA; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 INSERT INTO public.country VALUES (1, 'AF', 'AFGHANISTAN', 'Afghanistan', 'AFG', 4, 93);
@@ -436,7 +436,7 @@ INSERT INTO public.country VALUES (251, 'SS', 'SOUTH SUDAN', 'South Sudan', 'SSD
 --
 -- TOC entry 4856 (class 0 OID 16576)
 -- Dependencies: 218
--- Data for Name: crypto_values; Type: TABLE DATA; Schema: public; Owner: postgresql
+-- Data for Name: crypto_values; Type: TABLE DATA; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 INSERT INTO public.crypto_values VALUES (6, '123', '213', 321, '2024-07-04 21:41:46.851712');
@@ -447,7 +447,7 @@ INSERT INTO public.crypto_values VALUES (8, 'juan', 'asd23', 4432, '2024-07-04 2
 --
 -- TOC entry 4855 (class 0 OID 16569)
 -- Dependencies: 217
--- Data for Name: users_crypto; Type: TABLE DATA; Schema: public; Owner: postgresql
+-- Data for Name: users_crypto; Type: TABLE DATA; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 INSERT INTO public.users_crypto VALUES ('juandd', 'Juan de Dios', 'Fuentes', 'fuentes.jdd@gmail.com', 'juan123', 1, 10);
@@ -462,7 +462,7 @@ INSERT INTO public.users_crypto VALUES ('barbado', 'barbado', 'barbado', 'barbad
 --
 -- TOC entry 4867 (class 0 OID 0)
 -- Dependencies: 215
--- Name: country_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresql
+-- Name: country_seq; Type: SEQUENCE SET; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 SELECT pg_catalog.setval('public.country_seq', 1, false);
@@ -471,7 +471,7 @@ SELECT pg_catalog.setval('public.country_seq', 1, false);
 --
 -- TOC entry 4868 (class 0 OID 0)
 -- Dependencies: 219
--- Name: crypto_values_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresql
+-- Name: crypto_values_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 SELECT pg_catalog.setval('public.crypto_values_id_seq', 8, true);
@@ -480,7 +480,7 @@ SELECT pg_catalog.setval('public.crypto_values_id_seq', 8, true);
 --
 -- TOC entry 4869 (class 0 OID 0)
 -- Dependencies: 220
--- Name: users_crypto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresql
+-- Name: users_crypto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cryptoapp_xy7t_user
 --
 
 SELECT pg_catalog.setval('public.users_crypto_id_seq', 7, true);
@@ -489,6 +489,6 @@ SELECT pg_catalog.setval('public.users_crypto_id_seq', 7, true);
 -- Completed on 2024-07-06 10:46:21
 
 --
--- postgresqlQL database dump complete
+-- cryptoapp_xy7t_userQL database dump complete
 --
 
