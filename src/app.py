@@ -330,6 +330,34 @@ def update_crypto_put(crypto_id):
 def home():
     return send_file("static/index.html")
 
+@app.get("/portal-crypto.html")
+def portal():
+    return send_file("static/portal-crypto.html")
+
+@app.get("/portal-crypto-sapi.html")
+def portalsapi():
+    return send_file("static/portal-crypto-sapi.html")
+
+@app.get("/about-us.html")
+def aboutus():
+    return send_file("static/about-us.html")
+
+@app.get("/contact.html")
+def contact():
+    return send_file("static/contact.html")
+
+
+@app.get("/login.html")
+def login():
+    return send_file("static/login.html")
+
+@app.get("/register.html")
+def registerpag():
+    return send_file("static/register.html")
+
+@app.get("/contact.html")
+def contact():
+    return send_file("static/contact.html")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='localhost')
