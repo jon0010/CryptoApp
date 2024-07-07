@@ -348,16 +348,16 @@ def contact():
 
 
 @app.get("/login.html")
-def login():
+def loginpag():
     return send_file("static/login.html")
 
 @app.get("/register.html")
 def registerpag():
     return send_file("static/register.html")
 
-@app.get("/contact.html")
-def contact():
-    return send_file("static/contact.html")
+@app.get("/recuperoContra.html")
+def recuperoContra():
+    return send_file("static/recuperoContra.html")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='localhost')
