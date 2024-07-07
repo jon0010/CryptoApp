@@ -8,7 +8,7 @@ Nota: El sitio si está inactivo tarda en conectarse.
 
 Cuenta con lo siguiente:
 
-1) La BD está en Postgresql (Datos de conexión en app.py)
+1) La BD está en Postgresql (Datos de conexión en app.py). Hay un backup de la misma en este repositorio.
 
 2) Métodos POST:
     
