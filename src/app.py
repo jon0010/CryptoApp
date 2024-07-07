@@ -326,7 +326,7 @@ def update_crypto_put(crypto_id):
 
 @app.get("/")
 def connect():
-    return send_file("static/index.html")
+    return send_file("./static/index.html")
 
 
 if __name__ == '__main__':
